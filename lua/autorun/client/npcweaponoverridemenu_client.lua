@@ -22,63 +22,33 @@ end
 
 function NPCWeaponOverrideMenu:setTab(name) 
 
-    if type(name) == "string" and #name > 0 == true then
-
-        self.tabName = name
-
-    else 
-
-        error("Invalid argument: " .. tostring(name))
-    
-    end
+    self.tabName = name
 
 end
 
 function NPCWeaponOverrideMenu:setCategory(id, name) 
 
-    if type(name) == "string" and #name > 0 == true then
-
-        self.categoryName = name
-
-        if type(id) == "string" and #id > 0 or type(id) == "number" then 
-
-            self.categoryId = id
-        
-        else
-
-            error("Invalid argument:" .. tostring(id))
-
-        end
-
-    else
-
-        error("Invalid argument:" .. tostring(name))
-        
-    end
+    self.categoryName = name
+    self.categoryId = id
 
 end
 
 function NPCWeaponOverrideMenu:setOption(id, name)
 
-    if type(name) == "string" and #name > 0 == true then
+    self.optionName = name
+    self.optionId = id
 
-        self.optionName = name
+end
 
-        if type(id) == "string" and #id > 0 or type(id) == "number" then
+function NPCWeaponOverrideMenu:addCategory()
 
-            self.optionId = id
+	spawnmenu.AddToolCategory(self.tabName, self.categoryId, self.categoryName)
 
-        else
+end
 
-            error("Invalid argument: " .. tostring(id))
+function NPCWeaponOverrideMenu:addOption()
 
-        end
-
-    else
-
-        error("Invalid argument: " .. tostring(name))
-
-    end
+    spawnmenu.AddToolMenuOption(self.tabName, self.categoryId, self.optionId, self.optionName, "", "", function(panel) self:setPanel(panel) end)
 
 end
 
@@ -86,7 +56,6 @@ function NPCWeaponOverrideMenu:setConVars()
 
     CreateClientConVar("npcweaponoverridemenu_enabled", "0", false, true)
     CreateClientConVar("npcweaponoverridemenu_random", "0", false, true)
-
 
 end
 
@@ -148,7 +117,6 @@ function NPCWeaponOverrideMenu:setPanel(nwomForm)
             local secondColumnText =  line:GetColumnText(2)
             local weaponClass = nwomWeaponClasses[firstColumnText]
 
-
             if secondColumnText ~= "True" then
 
                 line:SetColumnText(2, "True")
@@ -157,7 +125,6 @@ function NPCWeaponOverrideMenu:setPanel(nwomForm)
             end
 
         end
-
 
     end
 
@@ -169,7 +136,6 @@ function NPCWeaponOverrideMenu:setPanel(nwomForm)
             local secondColumnText =  line:GetColumnText(2)
             local weaponClass = nwomWeaponClasses[firstColumnText]
 
-
             if secondColumnText == "True" then
 
                 line:SetColumnText(2, "")
@@ -179,14 +145,7 @@ function NPCWeaponOverrideMenu:setPanel(nwomForm)
 
         end
 
-
     end
-
-end
-
-function NPCWeaponOverrideMenu:getLocalPlayer()
-
-    return LocalPlayer()
 
 end
 
@@ -199,7 +158,7 @@ end
 function NPCWeaponOverrideMenu:sendDataToServer() 
 
     local slcWpnLst = self:getSelectedWeaponsList()
-    local localPly = self:getLocalPlayer()
+    local localPly = LocalPlayer()
 
     net.Start("selectedWeaponsList")
 
@@ -241,18 +200,6 @@ function NPCWeaponOverrideMenu:removeFromSelectedWeaponsList(weaponClass)
         end
 
     end
-
-end
-
-function NPCWeaponOverrideMenu:addCategory()
-
-	spawnmenu.AddToolCategory(self.tabName, self.categoryId, self.categoryName)
-
-end
-
-function NPCWeaponOverrideMenu:addOption()
-
-    spawnmenu.AddToolMenuOption(self.tabName, self.categoryId, self.optionId, self.optionName, "", "", function(panel) self:setPanel(panel) end)
 
 end
 
