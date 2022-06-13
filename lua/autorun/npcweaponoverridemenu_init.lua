@@ -3,21 +3,21 @@ include("autorun/client/npcweaponoverridemenu_client.lua")
 if CLIENT then
 
     local nwom = NPCWeaponOverrideMenu()
-
-    nwom:setConVars();
-    nwom:setTab("Options")
+    local tabName = "Options"
+    local categoryId = "snaileny"
+    local categoryName = "snaileny"
+    local optionId = "nwomOption"
+    local optionName = "NPC Weapon Override Menu"
 
     hook.Add("AddToolMenuCategories", "NwomCategoryHook", function()
 
-        nwom:setCategory("snaileny", "snaileny")
-        nwom:addCategory() 
+        spawnmenu.AddToolCategory(tabName, categoryId, categoryName)
  
     end)
 
     hook.Add("PopulateToolMenu", "NwomPopulateHook", function()
     
-        nwom:setOption("nwomOption", "NPC Weapon Override Menu")
-        nwom:addOption() 
+        spawnmenu.AddToolMenuOption(tabName, categoryId, optionId, optionName, "", "", function(panel) self:setPanel(panel) end)
 
     end)
 

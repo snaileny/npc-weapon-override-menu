@@ -7,11 +7,6 @@ function NPCWeaponOverrideMenu:new()
 
     local newTable = {
 
-        tabName = "",
-        categoryName = "",
-        categoryId = "",
-        optionName = "",
-        optionId = "",
         selectedWeaponsList = {}
 
     } 
@@ -20,35 +15,9 @@ function NPCWeaponOverrideMenu:new()
 
 end
 
-function NPCWeaponOverrideMenu:setTab(name) 
+function NPCWeaponOverrideMenu:getSelectedWeaponsList()
 
-    self.tabName = name
-
-end
-
-function NPCWeaponOverrideMenu:setCategory(id, name) 
-
-    self.categoryName = name
-    self.categoryId = id
-
-end
-
-function NPCWeaponOverrideMenu:setOption(id, name)
-
-    self.optionName = name
-    self.optionId = id
-
-end
-
-function NPCWeaponOverrideMenu:addCategory()
-
-	spawnmenu.AddToolCategory(self.tabName, self.categoryId, self.categoryName)
-
-end
-
-function NPCWeaponOverrideMenu:addOption()
-
-    spawnmenu.AddToolMenuOption(self.tabName, self.categoryId, self.optionId, self.optionName, "", "", function(panel) self:setPanel(panel) end)
+    return self.selectedWeaponsList
 
 end
 
@@ -146,12 +115,6 @@ function NPCWeaponOverrideMenu:setPanel(nwomForm)
         end
 
     end
-
-end
-
-function NPCWeaponOverrideMenu:getSelectedWeaponsList()
-
-    return self.selectedWeaponsList
 
 end
 
