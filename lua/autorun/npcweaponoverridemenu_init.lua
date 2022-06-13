@@ -19,7 +19,7 @@ if CLIENT then
 
     hook.Add("PopulateToolMenu", "NwomPopulateHook", function()
     
-        spawnmenu.AddToolMenuOption(tabName, categoryId, optionId, optionName, "", "", function(panel) self:setPanel(panel) end)
+        spawnmenu.AddToolMenuOption(tabName, categoryId, optionId, optionName, "", "", function(panel) nwom:setPanel(panel) end)
 
     end)
 
