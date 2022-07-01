@@ -9,7 +9,8 @@ if CLIENT then
     local optionId = "nwomOption"
     local optionName = "NPC Weapon Override Menu"
 
-    nwom:setConVars()
+    CreateClientConVar("npcweaponoverridemenu_enabled", "0", false, true)
+    CreateClientConVar("npcweaponoverridemenu_random", "0", false, true)
 
     hook.Add("AddToolMenuCategories", "NwomCategoryHook", function()
 

@@ -21,13 +21,6 @@ function NPCWeaponOverrideMenu:getSelectedWeaponsList()
 
 end
 
-function NPCWeaponOverrideMenu:setConVars()
-
-    CreateClientConVar("npcweaponoverridemenu_enabled", "0", false, true)
-    CreateClientConVar("npcweaponoverridemenu_random", "0", false, true)
-
-end
-
 function NPCWeaponOverrideMenu:setPanel(nwomForm)
                       
     local nwomList = vgui.Create("DListView", nwomForm)
